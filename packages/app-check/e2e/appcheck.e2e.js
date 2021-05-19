@@ -15,27 +15,19 @@
  *
  */
 
-export const APP_NATIVE_MODULE = 'RNFBAppModule';
-
-export const DEFAULT_APP_NAME = '[DEFAULT]';
-
-export const KNOWN_NAMESPACES = [
-  'appCheck',
-  'auth',
-  'analytics',
-  'remoteConfig',
-  'crashlytics',
-  'database',
-  'inAppMessaging',
-  'firestore',
-  'functions',
-  'indexing',
-  'storage',
-  'dynamicLinks',
-  'messaging',
-  'naturalLanguage',
-  'ml',
-  'notifications',
-  'perf',
-  'utils',
-];
+describe.only('appCheck()', function () {
+  describe('activate())', function () {
+    it('should activate with default provider and default token refresh', async function () {
+      try {
+        await firebase.appCheck().activate('s', true);
+      } catch (e) {
+        console.error('Caught an error? ' + JSON.stringify(e));
+      }
+    });
+  });
+  describe('setTokenAutoRefresh())', function () {
+    it('should set token refresh', function () {
+      firebase.appCheck().setTokenAutoRefreshEnabled(false);
+    });
+  });
+});

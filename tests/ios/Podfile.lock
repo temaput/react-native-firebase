@@ -11,6 +11,9 @@ PODS:
     - ReactCommon/turbomodule/core (= 0.64.1)
   - Firebase/Analytics (8.0.0):
     - Firebase/Core
+  - Firebase/AppCheck (8.0.0):
+    - Firebase/CoreOnly
+    - FirebaseAppCheck (~> 8.0.0-beta)
   - Firebase/Auth (8.0.0):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 8.0.0)
@@ -78,6 +81,10 @@ PODS:
     - GoogleUtilities/Network (~> 7.4)
     - "GoogleUtilities/NSData+zlib (~> 7.4)"
     - nanopb (~> 2.30908.0)
+  - FirebaseAppCheck (8.0.0-beta):
+    - FirebaseCore (~> 8.0)
+    - GoogleUtilities/Environment (~> 7.4)
+    - PromisesObjC (~> 1.2)
   - FirebaseAuth (8.0.0):
     - FirebaseCore (~> 8.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.4)
@@ -462,6 +469,10 @@ PODS:
   - RNFBApp (11.5.0):
     - Firebase/CoreOnly (= 8.0.0)
     - React-Core
+  - RNFBAppCheck (11.5.0):
+    - Firebase/AppCheck (= 8.0.0)
+    - React-Core
+    - RNFBApp
   - RNFBAuth (11.5.0):
     - Firebase/Auth (= 8.0.0)
     - React-Core
@@ -546,6 +557,7 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - RNFBAnalytics (from `../../packages/analytics`)
   - RNFBApp (from `../../packages/app`)
+  - RNFBAppCheck (from `../../packages/app-check`)
   - RNFBAuth (from `../../packages/auth`)
   - RNFBCrashlytics (from `../../packages/crashlytics`)
   - RNFBDatabase (from `../../packages/database`)
@@ -566,6 +578,7 @@ SPEC REPOS:
     - Firebase
     - FirebaseABTesting
     - FirebaseAnalytics
+    - FirebaseAppCheck
     - FirebaseAuth
     - FirebaseCore
     - FirebaseCoreDiagnostics
@@ -652,6 +665,8 @@ EXTERNAL SOURCES:
     :path: "../../packages/analytics"
   RNFBApp:
     :path: "../../packages/app"
+  RNFBAppCheck:
+    :path: "../../packages/app-check"
   RNFBAuth:
     :path: "../../packages/auth"
   RNFBCrashlytics:
@@ -692,6 +707,7 @@ SPEC CHECKSUMS:
   Firebase: 73c3e3b216ec1ecbc54d2ffdd4670c65c749edb1
   FirebaseABTesting: daebc95ec8829607d07dfe5e92dc3285aca29bc4
   FirebaseAnalytics: dcb92c7c9ef4fa7ffac276e8f87bd4fc8c97f1b8
+  FirebaseAppCheck: 47291052f5e0aa3d167cce5fefcf97f97fef01b7
   FirebaseAuth: b8cd992fca5b53dc6eec09e873a3f375f000c5a1
   FirebaseCore: 3f09591d51292843e2a46f18358d60bf4e996255
   FirebaseCoreDiagnostics: a31d987ba0fe16d59886a5dbadc2f1de871f88c8
@@ -741,6 +757,7 @@ SPEC CHECKSUMS:
   ReactCommon: bedc99ed4dae329c4fcf128d0c31b9115e5365ca
   RNFBAnalytics: 63b358420c0b17d2a8d932aa868fa279b2e70bd7
   RNFBApp: c9c0354a5300e7a01db0092a8cdb510271cb9984
+  RNFBAppCheck: 08b0070766fc238f8f8f05ce1950a0f8ad1f3b40
   RNFBAuth: 106b52a2c04be7ea1b0cb88ab31ad414c2507181
   RNFBCrashlytics: 7eefa7ea2999900fbeded703bcbb8fc5344496b0
   RNFBDatabase: f239154777ab0e1248604e1bbfe90419abfc8fe8
@@ -755,6 +772,6 @@ SPEC CHECKSUMS:
   RNFBStorage: 02768f467521c4db60dede17cf31852e9522d9d2
   Yoga: a7de31c64fe738607e7a3803e3f591a4b1df7393
 
-PODFILE CHECKSUM: cd2f69084949aea10ca551be89eb96c34004b9ee
+PODFILE CHECKSUM: ffbcdd14ab626ee7751a6b0ecf1d3d9e331426b0
 
 COCOAPODS: 1.10.1

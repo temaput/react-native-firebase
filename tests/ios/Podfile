@@ -12,7 +12,7 @@ Pod::UI.puts "react-native-firebase/tests: Using Firebase SDK version '#{$Fireba
 #$RNFirebaseAnalyticsWithoutAdIdSupport = true # toggle this to true for the no-ad-tracking Analytics subspec
 
 # Versions used below, for quick reference / outdated+upgrade checks
-$iOSMinimumDeployVersion = '10.0'
+$iOSMinimumDeployVersion = '11.0'
 
 platform :ios, $iOSMinimumDeployVersion
 
