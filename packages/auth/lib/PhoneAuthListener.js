@@ -21,7 +21,7 @@ import NativeFirebaseError from '@react-native-firebase/app/lib/internal/NativeF
 let REQUEST_ID = 0;
 
 export default class PhoneAuthListener {
-  constructor(auth, phoneNumber, timeout, forceResend) {
+  constructor(auth, phoneNumberOrPhoneInfoOptions, timeout, forceResend) {
     this._auth = auth;
     this._reject = null;
     this._resolve = null;
@@ -49,6 +49,14 @@ export default class PhoneAuthListener {
 
     this._subscribeToEvents();
 
+    if (typeof phoneNumberOrPhoneInfoOptions === 'string') {
+      this._verifyPhoneNumber(phoneNumberOrPhoneInfoOptions);
+    } else {
+      this._verifyPhoneInfoOptions(phoneNumberOrPhoneInfoOptions);
+    }
+  }
+
+  _verifyPhoneNumber(phoneNumber) {
     if (isAndroid) {
       this._auth.native.verifyPhoneNumber(
         phoneNumber,
@@ -60,6 +68,55 @@ export default class PhoneAuthListener {
 
     if (isIOS) {
       this._auth.native.verifyPhoneNumber(phoneNumber, this._phoneAuthRequestId + '');
+    }
+  }
+
+  _verifyPhoneNumberWithSession(phoneNumber, session) {
+    if (isAndroid) {
+      this._auth.native.verifyPhoneNumberWithSession(
+        phoneNumber,
+        session,
+        this._phoneAuthRequestId + '',
+        this._timeout,
+        this._forceResending,
+      );
+    }
+
+    if (isIOS) {
+      this._auth.native.verifyPhoneNumber(phoneNumber, session, this._phoneAuthRequestId + '');
+    }
+  }
+
+  _verifyPhoneNumberWithMultifactorInfo(multifactorInfo, session) {
+    if (isAndroid) {
+      this._auth.native.verifyPhoneNumberWithMultifactorInfo(
+        multifactorInfo,
+        session,
+        this._phoneAuthRequestId + '',
+        this._timeout,
+        this._forceResending,
+      );
+    }
+
+    if (isIOS) {
+      this._auth.native.verifyPhoneNumberWithMultifactorInfo(
+        multifactorInfo,
+        session,
+        this._phoneAuthRequestId + '',
+      );
+    }
+  }
+
+  _verifyPhoneInfoOptions(phoneInfoOptions) {
+    const { phoneNumber, session, multiFactorHint } = phoneInfoOptions;
+    if (phoneNumber && !session) {
+      this._verifyPhoneNumber(phoneNumber);
+    } else if (phoneNumber && session) {
+      this._verifyPhoneNumberWithSession(phoneNumber, session);
+    } else if (multiFactorHint && session) {
+      this._verifyPhoneNumberWithMultifactorInfo(multiFactorHint, session);
+    } else {
+      throw new Error('The PhoneInfoOptions format is incorrect. Please check the documentation.');
     }
   }
 
